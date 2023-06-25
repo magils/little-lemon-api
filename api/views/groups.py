@@ -14,7 +14,7 @@ import api.views.utils.constants as c
         c.MANAGER: [c.GET, c.POST],
     }
 )
-def manage_groups(request, group_name):    
+def manage_groups(request, group_name):
     if group_name not in (c.DELIVERY_CREW, c.MANAGER,):
         return Response(
             {"error": f"Invalid user type '{group_name}'"},

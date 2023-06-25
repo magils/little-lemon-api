@@ -1,6 +1,5 @@
 from django.core.paginator import Paginator, EmptyPage
 from api.exceptions import PaginationException, UnauthorizedUserGroupException
-from enum import Enum
 
 
 def order_query_result(request, queryset):
@@ -44,8 +43,10 @@ def allow_access(rules):
         def wrapper(*args, **kwargs):
             if not args:
                 raise ValueError("Not args found. An 'request' argument is required.")
+            
             request = args[0]
             user_group_names = [g["name"] for g in request.user.groups.values()]
+            is_superuser = request.user.is_superuser
             
             if not user_group_names:
                 user_group_names.append("customer")
@@ -53,7 +54,7 @@ def allow_access(rules):
             for group_name in user_group_names:
                 methods_allowed = rules.get(group_name, [])
 
-                if request.method in methods_allowed:
+                if request.method in methods_allowed or is_superuser:
                     return func(*args, **kwargs)
             raise UnauthorizedUserGroupException(detail="User group is not authorized for accessing this endpoint")            
         return wrapper

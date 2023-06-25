@@ -2,14 +2,11 @@ from rest_framework import serializers
 from django.contrib.auth.models import User, Group
 from api.models import *
 
-# TODO: Change this
-# Creating serializers manually just for practicing
-class CategorySerializer(serializers.Serializer):
-    slug = serializers.SlugField()
-    title = serializers.CharField(max_length=255)
+class CategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = "__all__"
 
-
-# Using model serializers from now on
 class MenuItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = MenuItem

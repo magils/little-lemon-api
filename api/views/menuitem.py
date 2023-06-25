@@ -1,8 +1,8 @@
-from api.models import MenuItem
+from api.models import MenuItem, Category
 from rest_framework.decorators import api_view, throttle_classes
 from rest_framework.throttling import UserRateThrottle, AnonRateThrottle
 from rest_framework.response import Response
-from api.serializers import MenuItemSerializer
+from api.serializers import CategorySerializer, MenuItemSerializer
 from rest_framework.parsers import JSONParser
 from django.http import JsonResponse
 from rest_framework import status
@@ -31,7 +31,7 @@ def menuitems(request):
                 {"error": f"Invalid data. Cause: '{serializer.errors}'"}
             )
     else:
-        menuitems_query = MenuItem.objects.all().order_by("id")
+        menuitems_query = MenuItem.objects.all()
         menuitems = order_query_result(request, menuitems_query)
         page_result = paginate_items(request, menuitems)
         serializer = MenuItemSerializer(page_result, many=True)
@@ -52,7 +52,7 @@ def menuitem(request, pk):
     try:
         menu_item = MenuItem.objects.get(pk=pk)
     except MenuItem.DoesNotExist:
-        return Response({"error": f"MenuItem '{pk}' not found "}, status=status.HTTP_400_BAD_REQUEST)
+        return Response({"error": f"MenuItem '{pk}' not found "}, status=status.HTTP_404_NOT_FOUND)
 
     if request.method == c.PUT:
         serializer = MenuItemSerializer(menu_item, data=request.data)
@@ -75,3 +75,50 @@ def menuitem(request, pk):
     else:
         serializer = MenuItemSerializer(menu_item)
         return Response(serializer.data)
+
+@api_view([c.GET, c.POST])
+@throttle_classes([UserRateThrottle, AnonRateThrottle])
+@allow_access(
+    {
+        c.DELIVERY_CREW: [c.GET],
+        c.CUSTOMER: [c.GET],
+        c.MANAGER: [c.GET, c.POST],
+    }
+)
+def categories(request):
+    if request.method == c.POST:
+        serializer = CategorySerializer(data=request.data)
+
+        if serializer.is_valid():
+            serializer.save()
+            return JsonResponse(serializer.data, status=201)
+        else:
+            return JsonResponse(
+                {"error": f"Invalid data. Cause: '{serializer.errors}'"}
+            )
+    else:
+        categories_query = Category.objects.all()
+        categories = order_query_result(request, categories_query)
+        page_result = paginate_items(request, categories)
+        serializer = CategorySerializer(page_result, many=True)
+
+        return Response(serializer.data)
+
+@api_view([c.GET])
+@throttle_classes([UserRateThrottle, AnonRateThrottle])
+@allow_access(
+    {
+        c.DELIVERY_CREW: [c.GET],
+        c.CUSTOMER: [c.GET],
+        c.MANAGER: [c.GET],
+    }
+)
+def category(request, pk):
+    try:
+        category = Category.objects.get(pk=pk)
+    except Category.DoesNotExist:
+        return Response({"error": f"Category '{pk}' not found "}, status=status.HTTP_404_NOT_FOUND)
+
+    serializer = CategorySerializer(category)
+
+    return Response(serializer.data)

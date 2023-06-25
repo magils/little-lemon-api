@@ -47,7 +47,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8000/api/menu-items/55",
+							"raw": "http://localhost:8000/api/menu-items/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -56,7 +56,7 @@
 							"path": [
 								"api",
 								"menu-items",
-								"55"
+								"1"
 							]
 						}
 					},
@@ -69,7 +69,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"title\": \"Supreme item\",\n    \"price\": \"9999.99\",\n    \"featured\": true,\n    \"category\": 1\n}",
+							"raw": "{\n    \"title\": \"Ultra Supreme item\",\n    \"price\": \"9999.99\",\n    \"featured\": true,\n    \"category\": 1\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -92,6 +92,35 @@
 					"response": []
 				},
 				{
+					"name": "Create Category",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Supreme item\",\n    \"price\": \"9999.99\",\n    \"featured\": true,\n    \"category\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/categories",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Update a MenuItem",
 					"request": {
 						"method": "PUT",
@@ -106,7 +135,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8000/api/menu-items/57",
+							"raw": "http://localhost:8000/api/menu-items/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -115,7 +144,7 @@
 							"path": [
 								"api",
 								"menu-items",
-								"57"
+								"1"
 							]
 						}
 					},
@@ -128,7 +157,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"title\": \"wwjfde 2 Plus Max\",\n    \"featured\": true\n}",
+							"raw": "{\n    \"featured\": false\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -136,7 +165,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8000/api/menu-items/57",
+							"raw": "http://localhost:8000/api/menu-items/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -145,7 +174,7 @@
 							"path": [
 								"api",
 								"menu-items",
-								"57"
+								"1"
 							]
 						}
 					},
@@ -272,67 +301,6 @@
 			]
 		},
 		{
-			"name": "Users",
-			"item": [
-				{
-					"name": "New User",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"first_name\": \"Peter\",\n    \"last_name\": \"Doe\",\n    \"username\": \"peterdoe\",\n    \"email\": \"peterdoe@gmail.com\",\n    \"password\": \"Test100.\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{base_url}}/users",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"users"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "User Me",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"username\": \"Peter Doe\",\n    \"email\": \"peterdoe@gmail.com\",\n    \"password\": \"Test100.\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{base_url}}/users/me",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"users",
-								"me"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
 			"name": "Order",
 			"item": [
 				{
@@ -378,7 +346,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8000/api/orders/21",
+							"raw": "http://localhost:8000/api/orders/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -387,7 +355,7 @@
 							"path": [
 								"api",
 								"orders",
-								"21"
+								"1"
 							]
 						}
 					},
@@ -400,7 +368,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"delivery_crew\": 14\n}",
+							"raw": "{\n    \"delivery_crew\": 2\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -408,7 +376,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8000/api/orders/21",
+							"raw": "http://localhost:8000/api/orders/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -417,7 +385,7 @@
 							"path": [
 								"api",
 								"orders",
-								"21"
+								"1"
 							]
 						}
 					},
@@ -498,7 +466,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8000/api/orders/12",
+							"raw": "http://localhost:8000/api/orders/2",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -507,7 +475,7 @@
 							"path": [
 								"api",
 								"orders",
-								"12"
+								"2"
 							]
 						}
 					},
@@ -589,7 +557,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"username\": \"delivery_3\"\n}",
+							"raw": "{\n    \"username\": \"delivery_1\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -644,7 +612,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8000/api/groups/manager/users/17",
+							"raw": "http://localhost:8000/api/groups/manager/users/8",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -655,7 +623,7 @@
 								"groups",
 								"manager",
 								"users",
-								"17"
+								"8"
 							]
 						}
 					},
@@ -667,7 +635,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/groups/delivery-crew/users/18",
+							"raw": "{{base_url}}/groups/delivery-crew/users/5",
 							"host": [
 								"{{base_url}}"
 							],
@@ -675,7 +643,7 @@
 								"groups",
 								"delivery-crew",
 								"users",
-								"18"
+								"5"
 							]
 						}
 					},
@@ -775,6 +743,50 @@
 					"response": []
 				},
 				{
+					"name": "Get Token for Admin Superuser",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"authorizationToken\", jsonData.access);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"admin\",\n    \"password\": \"sweet-l3m0n!\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/auth/jwt/create/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"auth",
+								"jwt",
+								"create",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Get Token for Delivery Crew",
 					"event": [
 						{
@@ -828,7 +840,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"username\": \"delivery_1\",\n    \"password\": \"sweet-l3m0n!\",\n    \"email\": \"delivery_3@little-lemon.com\"\n}",
+							"raw": "{\n    \"username\": \"manager_1\",\n    \"password\": \"sweet-l3m0n!\",\n    \"email\": \"manager_1@little-lemon.com\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
